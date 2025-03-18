@@ -26,8 +26,8 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
               <img
-                className="h-10 w-20"
-                src= {logo}
+                className="h-10 w-auto"
+                src={logo}
                 alt="Print Business Logo"
                 onError={(e) => {
                   e.target.onerror = null;
@@ -45,7 +45,7 @@ const Navbar = () => {
                 to={link.path}
                 className={`px-3 py-2 rounded-md text-sm font-medium ${
                   location.pathname === link.path
-                    ? 'text-white bg-primary'
+                    ? 'bg-blue-700 text-white'
                     : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                 }`}
               >
@@ -82,7 +82,7 @@ const Navbar = () => {
                 to={link.path}
                 className={`block px-3 py-2 rounded-md text-base font-medium ${
                   location.pathname === link.path
-                    ? 'text-white bg-primary'
+                    ? 'bg-blue-700 text-white'
                     : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                 }`}
                 onClick={() => setIsOpen(false)}

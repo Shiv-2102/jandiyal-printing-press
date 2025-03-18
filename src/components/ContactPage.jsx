@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FiMapPin, FiPhone, FiMail, FiClock } from 'react-icons/fi';
+import emailjs from '@emailjs/browser';
 
 const ContactPage = () => {
+  const form = useRef();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
+    user_name: '',
+    user_email: '',
+    user_phone: '',
     service: '',
     message: '',
   });
@@ -15,6 +17,7 @@ const ContactPage = () => {
     submitted: false,
     error: false,
     message: '',
+    loading: false
   });
 
   const handleChange = (e) => {
@@ -27,23 +30,46 @@ const ContactPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // In a real application, you would handle form submission to a backend here
     
-    // Simulate form submission
     setFormStatus({
-      submitted: true,
-      error: false,
-      message: 'Thank you for your message! We will get back to you shortly.',
+      ...formStatus,
+      loading: true
     });
-
-    // Reset form after successful submission
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: '',
-    });
+    
+    // Your EmailJS service ID, template ID, and public key
+    const serviceId = 'service_ip3pdt4';
+    const templateId = 'template_qweuvdo';
+    const publicKey = 'vAid3qpTasWUHY7wY';
+    
+    // Send the form data to your email
+    emailjs.sendForm(serviceId, templateId, form.current, publicKey)
+      .then((result) => {
+        console.log('Email successfully sent!', result.text);
+        setFormStatus({
+          submitted: true,
+          error: false,
+          message: 'Thank you for your message! We will get back to you shortly.',
+          loading: false
+        });
+        
+        // Reset form
+        setFormData({
+          user_name: '',
+          user_email: '',
+          user_phone: '',
+          service: '',
+          message: '',
+        });
+      })
+      .catch((error) => {
+        console.error('Failed to send email:', error.text);
+        setFormStatus({
+          submitted: true,
+          error: true,
+          message: 'There was an error sending your message. Please try again later.',
+          loading: false
+        });
+      });
   };
 
   // Contact information
@@ -154,31 +180,31 @@ const ContactPage = () => {
                 </div>
               )}
               
-              <form onSubmit={handleSubmit}>
+              <form ref={form} onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                   <div>
-                    <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
+                    <label htmlFor="user_name" className="block text-gray-700 font-medium mb-2">
                       Your Name *
                     </label>
                     <input
                       type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
+                      id="user_name"
+                      name="user_name"
+                      value={formData.user_name}
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
+                    <label htmlFor="user_email" className="block text-gray-700 font-medium mb-2">
                       Email Address *
                     </label>
                     <input
                       type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
+                      id="user_email"
+                      name="user_email"
+                      value={formData.user_email}
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -188,14 +214,14 @@ const ContactPage = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                   <div>
-                    <label htmlFor="phone" className="block text-gray-700 font-medium mb-2">
+                    <label htmlFor="user_phone" className="block text-gray-700 font-medium mb-2">
                       Phone Number
                     </label>
                     <input
                       type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
+                      id="user_phone"
+                      name="user_phone"
+                      value={formData.user_phone}
                       onChange={handleChange}
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
@@ -240,8 +266,9 @@ const ContactPage = () => {
                 <button
                   type="submit"
                   className="w-full bg-blue-700 text-white font-medium py-3 px-6 rounded-md hover:bg-blue-800 transition-colors"
+                  disabled={formStatus.loading}
                 >
-                  Send Message
+                  {formStatus.loading ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </motion.div>
