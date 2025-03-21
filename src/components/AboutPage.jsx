@@ -16,13 +16,13 @@ const AboutPage = () => {
   const stats = [
     { 
       icon: FiPrinter, 
-      value: '15+', 
+      value: '38+', 
       label: 'Years Experience', 
       description: 'Providing quality printing services'
     },
     { 
       icon: FiUsers, 
-      value: '2,500+', 
+      value: '10,000+', 
       label: 'Happy Clients', 
       description: 'Trusted by businesses and individuals'
     },
@@ -34,7 +34,7 @@ const AboutPage = () => {
     },
     { 
       icon: FiClipboard, 
-      value: '10,000+', 
+      value: '100,000+', 
       label: 'Projects Completed', 
       description: 'Delivering quality prints on time'
     }
@@ -43,9 +43,9 @@ const AboutPage = () => {
   // Team members
   const teamMembers = [
     {
-      name: 'John Smith',
+      name: 'Ravi Gupta',
       position: 'Founder & CEO',
-      bio: 'With over 20 years of experience in the printing industry, John founded the company with a vision to provide exceptional quality printing services to businesses of all sizes.',
+      bio: 'With over 35 years of experience in the printing industry, Ravi founded the company with a vision to provide exceptional quality printing services to businesses of all sizes.',
       image: 'https://via.placeholder.com/300x300?text=John+Smith'
     },
     {
