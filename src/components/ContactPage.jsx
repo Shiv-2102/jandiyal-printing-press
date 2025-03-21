@@ -3,7 +3,17 @@ import { motion } from 'framer-motion';
 import { FiMapPin, FiPhone, FiMail, FiClock } from 'react-icons/fi';
 import emailjs from '@emailjs/browser';
 
+import useSEO from '../hooks/useSEO';
+
 const ContactPage = () => {
+  
+    //useSEO
+    useSEO({
+      title: "Jandiyal Printing Press - High Quality Offset Printing Services in Jammu",
+      description: "Get professional offset, digital, and screen printing services in Jammu. Fast turnaround and exceptional quality for all your business printing needs.",
+      keywords: "printing services Jammu, offset printing, digital printing, screen printing, printing press Jammu, business cards, wedding cards, brochures, catalogs, banners, posters, packaging"
+    });
+  
   const form = useRef();
   const [formData, setFormData] = useState({
     user_name: '',
@@ -79,7 +89,8 @@ const ContactPage = () => {
       title: 'Our Location',
       details: [
         'Jandiyal Printing Press',
-        'Jammu, J&K 180001',
+        'Mohinder Nagar, Canal Road',
+        'Jammu, J&K 180016',
         'India'
       ]
     },
@@ -87,26 +98,24 @@ const ContactPage = () => {
       icon: FiPhone,
       title: 'Phone Numbers',
       details: [
-        'Main: (123) 456-7890',
-        'Sales: (123) 456-7891',
-        'Support: (123) 456-7892'
+        'Main: +0191-2553140',
+        'Mobile: +91-8899960835',
+        'Whatsapp: +91-8899960835'
       ]
     },
     {
       icon: FiMail,
       title: 'Email Us',
       details: [
-        'info@jandiyalprinting.com',
-        'sales@jandiyalprinting.com',
-        'support@jandiyalprinting.com'
+        'jandiyalprintingpress@gmail.com',
+        'ravi@jandiyalprintingpress.com',
       ]
     },
     {
       icon: FiClock,
       title: 'Business Hours',
       details: [
-        'Monday - Friday: 8:00 AM - 6:00 PM',
-        'Saturday: 9:00 AM - 3:00 PM',
+        'Monday - Saturday: 9:30 AM - 7:30 PM',
         'Sunday: Closed'
       ]
     }
@@ -304,7 +313,7 @@ const ContactPage = () => {
                 </p>
                 <div className="flex items-center text-blue-700 font-medium">
                   <FiPhone className="mr-2" />
-                  <span>(123) 456-7890</span>
+                  <span>+0191 - 2553140</span>
                 </div>
               </div>
             </motion.div>

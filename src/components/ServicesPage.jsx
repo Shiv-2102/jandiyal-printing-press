@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiPrinter, FiMonitor, FiLayers, FiEdit, FiPackage } from 'react-icons/fi';
 
+import useSEO from '../hooks/useSEO';
+
 // Import images
 import offsetPrintingImg from '../assets/offsetPrinting.jpg';
 import digitalPrintingImg from '../assets/digitalPrinting.jpg';
@@ -11,6 +13,14 @@ import designServicesImg from '../assets/designServices.jpg';
 import finishingSolutionsImg from '../assets/finishingSolutions.jpg';
 
 const ServicesPage = () => {
+
+  //useSEO
+  useSEO({
+    title: "Jandiyal Printing Press - High Quality Offset Printing Services in Jammu",
+    description: "Get professional offset, digital, and screen printing services in Jammu. Fast turnaround and exceptional quality for all your business printing needs.",
+    keywords: "printing services Jammu, offset printing, digital printing, screen printing, printing press Jammu, business cards, wedding cards, brochures, catalogs, banners, posters, packaging"
+  });
+
   const location = useLocation();
   const offsetRef = useRef(null);
   const digitalRef = useRef(null);
