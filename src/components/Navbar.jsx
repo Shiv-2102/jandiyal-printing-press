@@ -26,7 +26,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
               <img
-                className="h-10 w-auto"
+                className="h-20 w-auto"
                 src={logo}
                 alt="Print Business Logo"
                 onError={(e) => {
